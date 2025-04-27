@@ -53,22 +53,7 @@ function QuestionsPage() {
 
 
   const handleFilterChange = async (filter) => {
-    try {
-      setActiveFilter(filter);
-      setLoading(true);
-      console.log("Filter changed to:", filter);
-  
-      const res = await axios.get(BASE_URL + `/api/questions?filter=${filter}`, {
-        headers: { Authorization: `bearer ${token}` }
-      });
-  
-      setQuestions(res?.data?.questions);
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.response?.data?.message || "Something went wrong!");
-    } finally {
-      setLoading(false);
-    }
+    setActiveFilter(filter);
   };
   
 
