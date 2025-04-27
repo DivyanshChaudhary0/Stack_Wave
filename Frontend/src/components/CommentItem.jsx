@@ -188,9 +188,7 @@ function CommentItem({ comment,loggedInUser,token,onCommentDeleted,onReply,level
                          </div>
                     </div>
                 ) : (
-                    // View Mode
                     <>
-                        {/* Author Name & Content */}
                         <div className="bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-1.5">
                              <Link to={`/profile/${author?._id}`} className="font-semibold text-gray-900 dark:text-white hover:underline mr-1">{author?.username}</Link>
                             <span className="text-gray-700 dark:text-gray-300">
@@ -202,7 +200,7 @@ function CommentItem({ comment,loggedInUser,token,onCommentDeleted,onReply,level
                         </div>
                          
                          <div className="flex items-center space-x-3 mt-1 px-1 text-gray-500 dark:text-gray-400">
-                            {level <= 2 && <button onClick={handleReplyClick} className="hover:underline inline-flex items-center cursor-pointer"> <ReplyIcon /> Reply </button> }
+                            {level < 1 && <button onClick={handleReplyClick} className="hover:underline inline-flex items-center cursor-pointer"> <ReplyIcon /> Reply </button> }
                              {isOwner && (
                                  <>
                                      <button onClick={handleEditClick} className="hover:underline cursor-pointer">Edit</button>
@@ -212,7 +210,7 @@ function CommentItem({ comment,loggedInUser,token,onCommentDeleted,onReply,level
                              <span title={new Date(createdAt).toLocaleString()}>
                                  {createdAt ? formatDistanceToNow(new Date(createdAt), { addSuffix: true }) : ''}
                              </span>
-                            <button onClick={handleToggleReplies} className='hover:underline inline-flex items-center cursor-pointer'>Show Replies  </button>
+                            {level < 1 && <button onClick={handleToggleReplies} className='hover:underline inline-flex items-center cursor-pointer'>Show Replies  </button> }
                          </div>
                     </>
                 )}
