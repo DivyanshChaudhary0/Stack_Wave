@@ -17,21 +17,39 @@ function QuestionsPage() {
   const [loading, setLoading] = useState(false);
   const [activeFilter, setActiveFilter] = useState('Newest');
   const { token } = useSelector((state) => state.user);
+  const [page, setPage] = useState(1)
+
+
+  const fetchQuestions = async (pageNumber) => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${BASE_URL}/api/questions?page=${pageNumber}&limit=3&filter=${activeFilter}`, {
+        headers: { Authorization: `bearer ${token}` }
+      });
+      setQuestions(res.data?.questions);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      toast.error(err.response?.data?.message || "Something went wrong");
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    axios.get(BASE_URL + "/api/questions",{
-      headers: {Authorization: `bearer ${token}`}
-    })
-    .then((res) => {
-      setQuestions(res?.data?.questions)
-      setLoading(false);
-    })
-    .catch((err) => {
-      setLoading(false);
-      toast.error(err.response.data.message)
-    })
-  },[])
+    fetchQuestions(page);
+  },[page,activeFilter])
+
+  const handlePrev = () => {
+    if(page > 1){
+      setPage(prev => prev - 1)
+    }
+  }
+
+  const handleNext = () => {
+    if(questions.length > 1){
+      setPage(prev => prev + 1)
+    }
+  }
 
 
   const handleFilterChange = async (filter) => {
@@ -101,7 +119,13 @@ function QuestionsPage() {
       </div>
 
       <div className="mt-6">
-         <div className="text-center text-gray-500 dark:text-gray-400">Pagination goes here...</div>
+        <div className="text-center text-gray-500 dark:text-gray-400">
+          <div className="join ">
+            <button onClick={handlePrev} className={`join-item btn ${page <= 1 && "disabled" }`}>«</button>
+            <button className="join-item btn">Page {page}</button>
+            <button onClick={handleNext} className="join-item btn">»</button>
+          </div>
+        </div>
       </div>
     </div>
   );

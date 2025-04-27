@@ -21,6 +21,7 @@ import RoomPage from "./pages/RoomPage";
 import EditQuestionPage from "./pages/EditQuestionPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import LeaderBoard from "./pages/LeaderBoard";
 
 function App() {
 
@@ -87,6 +88,7 @@ function App() {
               <Route path="/room/:roomId" element={<RoomPage/>} />
               <Route path="/profile/:userId" element={<ProfilePage/>} />
               <Route path="/profile/:userId/edit" element={<EditProfilePage/> } />
+              <Route path="/leaderboard" element={<LeaderBoard/>} />
             </Route>
           <Route path="*" element={<PageNotFound/>} />
           </Routes>
