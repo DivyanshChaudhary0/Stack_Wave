@@ -21,7 +21,7 @@ import RoomPage from "./pages/RoomPage";
 import EditQuestionPage from "./pages/EditQuestionPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
-import LeaderBoard from "./pages/LeaderBoard";
+import LeaderBoard from "./pages/LeaderboardPage";
 
 function App() {
 

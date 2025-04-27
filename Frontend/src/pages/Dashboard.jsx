@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {  FaQuestionCircle, FaPencilAlt, FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
+import { toast } from 'react-toastify';
 
 const PlaceholderIcon = ({ className = "w-8 h-8" }) => <div className={`bg-gray-300 dark:bg-gray-600 rounded ${className}`}></div>;
 const UserAvatar = ({ src, alt, size = "w-8 h-8" }) => <img className={`rounded-full object-cover ${size}`} src={src} alt={alt} />;
@@ -18,23 +19,16 @@ function Dashboard() {
   const { user, token } = useSelector(state => state.user);
   const [leaderboard, setLeaderBoard] = useState([]);
 
-  // const leaderboard = [
-  //   { id: '1', name: 'Alice Coder', reputation: 1250, avatarUrl: 'https://placehold.co/40x40/7F9CF5/EBF4FF?text=AC' },
-  //   { id: '2', name: 'Bob Debugger', reputation: 980, avatarUrl: 'https://placehold.co/40x40/A3BFFA/EBF4FF?text=BD' },
-  //   { id: '3', name: 'Charlie Syntax', reputation: 850, avatarUrl: 'https://placehold.co/40x40/C3D7FB/EBF4FF?text=CS' },
-  // ];
-
 
   useEffect(() => {
     axios.get(BASE_URL + `/api/leaderboard?limit=5`,{
       headers: { Authorization: `bearer ${token}` }
     })
     .then((res) => {
-      setLeaderBoard(res.data.data)
-      console.log(res);
+      setLeaderBoard(res.data.data);
     })
     .catch((err) => {
-      console.log(err);
+      toast.error(err.response?.data?.message || "something went wrong")
     })
   },[])
 
