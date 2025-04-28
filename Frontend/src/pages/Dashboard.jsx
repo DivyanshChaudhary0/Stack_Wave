@@ -119,7 +119,7 @@ function Dashboard() {
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Top Contributors</h3>
                   <ul className="space-y-4">
                       {leaderboard.map((contributor, index) => (
-                         <li key={contributor.id} className="flex items-center justify-between space-x-3">
+                         <li key={contributor._id} className="flex items-center justify-between space-x-3">
                             <div className="flex items-center space-x-3">
                                <span className="font-semibold text-gray-500 dark:text-gray-400 w-5 text-center">{index + 1}</span>
                                <UserAvatar src={contributor.avatar} alt={contributor.username} />
