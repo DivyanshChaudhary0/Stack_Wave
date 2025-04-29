@@ -27,7 +27,6 @@ function QuestionItem({ question }) {
   return (
     <div className="flex flex-col sm:flex-row items-start p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150 space-x-0 sm:space-x-4">
 
-      {/* Stats Section (Left side on larger screens) */}
       <div className="flex sm:flex-col items-baseline sm:items-end space-x-3 sm:space-x-0 sm:space-y-1 text-sm text-gray-600 dark:text-gray-400 flex-shrink-0 w-full sm:w-24 mb-2 sm:mb-0">
         <div className="text-center min-w-[50px]">
           <span className="font-semibold text-base text-gray-800 dark:text-gray-200">{formatNumber(votes || 0)}</span>

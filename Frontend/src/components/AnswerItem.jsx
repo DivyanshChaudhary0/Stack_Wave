@@ -213,7 +213,6 @@ function AnswerItem({ answer, questionId, loggedInUser, token, onAnswerDeleted }
           optimisticVotes -= 2;
           optimisticUserVote = "down";
         } else {
-          // New downvote
           optimisticVotes--;
           optimisticUserVote = "down";
         }
