@@ -315,7 +315,7 @@ function QuestionDetailsPage() {
         </div>
 
          <div className="flex items-start space-x-4">
-             <div className="flex flex-col items-center space-y-1 flex-shrink-0 text-gray-600 dark:text-gray-400 pt-1">
+             {!isAuthor && <div className="flex flex-col items-center space-y-1 flex-shrink-0 text-gray-600 dark:text-gray-400 pt-1">
                 <button onClick={() => handleVote("up")} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title="Upvote">
                    <UpVoteIcon filled={userVote === "up"} />
                 </button>
@@ -333,7 +333,7 @@ function QuestionDetailsPage() {
                 <button onClick={() => handleVote("down")} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title="Downvote">
                    <DownVoteIcon filled={userVote === "down"} />
                 </button>
-             </div>
+             </div> }
 
             
              <div className="flex-grow">
