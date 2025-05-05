@@ -27,11 +27,11 @@ function App() {
 
   const clientId = import.meta.env.VITE_CLIENT_ID;
   const themeMode = useSelector(state => state.theme.mode);
+  console.log(themeMode);
   
   const { token: tokenFromStore } = useSelector(state => state.user);
   const isUserAuthenticated = !!tokenFromStore;
   const dispatch = useDispatch();
-  const navigate = Navigate();
 
 
   useEffect(() => {
@@ -47,12 +47,15 @@ function App() {
           if (res.data && res.data.user) {
             dispatch(addUser({ user: res.data.user, token: tokenFromStorage }));
           } else {
+             console.error("Invalid token or user data not found.");
              localStorage.removeItem("token");
+             window.location.href = "/";
           }
       })
       .catch((err) => {
-         navigate("/");
+         console.error("Error fetching user data:", err);
          localStorage.removeItem("token");
+         window.location.href = "/";
       });
     }
   }, [tokenFromStore]);
