@@ -10,7 +10,7 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 import { motion, AnimatePresence } from 'framer-motion';
 import getLanguageExtension from '../components/rooms/getLanguageExtension';
 
-const SOCKET_SERVER_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3000';
+const SOCKET_SERVER_URL = 'https://stack-wave.onrender.com';
 
 
 const SendIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5"><path d="M3.105 3.105a.75.75 0 01.814-.398l14.25 5.25a.75.75 0 010 1.388l-14.25 5.25a.75.75 0 01-.814-.398V3.105z" /></svg>;
